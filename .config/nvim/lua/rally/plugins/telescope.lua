@@ -17,6 +17,10 @@ return {
     { "<Leader>sg", function() require("telescope.builtin").git_files() end, desc = "[s]cope [g]it", },
     { "<Leader>sh", function() require("telescope.builtin").help_tags() end, desc = "[s]cope [h]elp", },
     { "<Leader>st", function() require("telescope.builtin").treesitter() end, desc = "[s]cope [t]reesitter", },
+    { "<Leader>sb", function() require("telescope.builtin").git_branches() end, desc = "[s]cope git [b]ranches", },
+    { "<Leader>sx", function() require("telescope.builtin").git_stash() end, desc = "[s]cope git stash", },
+    { "<Leader>sl", function() require("telescope.builtin").git_bcommits() end, desc = "[s]cope git buffer commits", },
+    { "<Leader>sj", function() require("telescope.builtin").git_commits() end, desc = "[s]cope git commits", },
   },
   config = function()
     require("telescope").setup {
