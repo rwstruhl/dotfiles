@@ -22,3 +22,6 @@
 	prompt = false
 [credential]
 	helper = osxkeychain
+[maintenance]
+  auto = false
+  strategy = incremental

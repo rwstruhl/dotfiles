@@ -85,6 +85,11 @@ return {
       on_attach = onAttach,
     })
 
+    lspconfig["wgsl_analyzer"].setup({
+      capabilities = capabilities,
+      on_attach = onAttach,
+    })
+
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
       on_attach = onAttach,

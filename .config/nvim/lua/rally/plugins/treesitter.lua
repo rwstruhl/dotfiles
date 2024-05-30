@@ -7,8 +7,10 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects"
   },
   config = function()
+    vim.filetype.add({extension = {wgsl = 'wgsl'}})
+
 	  require("nvim-treesitter.configs").setup {
-		  ensure_installed = {"css", "html", "javascript", "typescript", "tsx", "lua", "rust", "graphql" },
+		  ensure_installed = {"css", "html", "javascript", "typescript", "tsx", "lua", "rust", "graphql", "wgsl" },
       auto_install = false,
 		  highlight = {
 			  enable = true,
