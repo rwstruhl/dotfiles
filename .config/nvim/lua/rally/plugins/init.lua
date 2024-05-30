@@ -5,11 +5,13 @@ return {
   { "tpope/vim-surround", event = { "BufReadPost", "BufNewFile", }, },
   { "tpope/vim-commentary", event = { "BufReadPost", "BufNewFile", }, },
 
-  -- Harpoon
-  {"theprimeagen/harpoon", event = "VeryLazy", },
-
   -- Undo Tree
-  {"mbbill/undotree", event = { "BufReadPost", "BufNewFile", }, },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<Leader>u", ":UndotreeToggle<CR>", desc = "Toggle undo tree", }
+    }
+  },
 
   -- Which Key
   {"folke/which-key.nvim", event = "VeryLazy", opts = {}},
