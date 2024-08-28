@@ -60,8 +60,13 @@ export EDITOR="nvim"
 export NODE_OPTIONS=--max-old-space-size=16384
 export SHORT_HOST="${HOST/.*/}"
 
+# KEYS (Onepass)
+export ANTHROPIC_API_KEY="op://Private/xcgw6lfplgntutmhdq2q6ark4y/API Key"
+export OPENAI_API_KEY="op://Private/auth0.openai.com/rally-laptop-sk"
+
+
 # Path configuration
-export PATH="$HOME/.moon/bin:$PATH"
+export PATH="$HOME/.moon/bin:$PATH:$HOME/bin"
 
 # FZF
 eval "$(fzf --zsh)"

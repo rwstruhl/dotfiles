@@ -3,7 +3,7 @@
 [user]
 	email = ryan@rally.space
 	name = Ryan Struhl
-	signingkey = 6B374171E1D3C245
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOz9UGdgOEbQhEcKIAIO+5mQEwKTdXpxeee8MBSFSxR2
 [commit]
 	gpgsign = true
 [diff]
@@ -25,3 +25,7 @@
 [maintenance]
   auto = false
   strategy = incremental
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
