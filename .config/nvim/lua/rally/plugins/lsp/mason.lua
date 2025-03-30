@@ -12,12 +12,13 @@ return {
     mason.setup({})
     mason_lspconfig.setup({
       ensure_installed = {
-        "tsserver",
+        "ts_ls",
         "lua_ls",
         "graphql",
         "rust_analyzer",
         "html",
-        "cssls"
+        "cssls",
+        "tailwindcss"
       },
       automatic_installation = true,
     })

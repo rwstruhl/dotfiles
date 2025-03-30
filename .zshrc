@@ -35,3 +35,6 @@ if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
         ssh-add --apple-use-keychain ~/.ssh/id_ed25519 > /dev/null 2>&1
     fi
 fi
+
+# sst
+export PATH=/Users/ryanstruhl/.sst/bin:$PATH

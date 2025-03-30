@@ -6,7 +6,7 @@ return {
     { "nvim-tree/nvim-web-devicons" },
   },
   keys = {
-    { "<Leader>p", function() require("telescope.builtin").find_files() end, desc = "Scope [p]roject files", },
+    { "<Leader>p", function() require("telescope.builtin").find_files({ find_command = {"rg", "--files", "--hidden", "--follow", "--glob", "!.git/*"}, }) end, desc = "Scope [p]roject files", },
     { "<c-p>", function() require("telescope.builtin").oldfiles() end, desc = "Scope [p]roject files", },
     { "<Leader>b", function() require("telescope.builtin").buffers() end, desc = "Scope [b]uffers", },
     { "<Leader>f", function() require("telescope.builtin").live_grep() end, desc = "Scope [f]ind within project", },

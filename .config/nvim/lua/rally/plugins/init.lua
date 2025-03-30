@@ -1,6 +1,5 @@
 return {
   -- TPope Essentials
-  { "tpope/vim-vinegar", lazy = false, },
   { "tpope/vim-repeat", event = { "BufReadPost", "BufNewFile", }, },
   { "tpope/vim-surround", event = { "BufReadPost", "BufNewFile", }, },
   { "tpope/vim-commentary", event = { "BufReadPost", "BufNewFile", }, },
