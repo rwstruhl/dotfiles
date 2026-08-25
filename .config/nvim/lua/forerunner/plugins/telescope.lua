@@ -6,6 +6,10 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
+    { "grr", function() require("telescope.builtin").lsp_references() end, desc = "LSP references", },
+    { "gri", function() require("telescope.builtin").lsp_implementations() end, desc = "LSP implementations", },
+    { "grt", function() require("telescope.builtin").lsp_type_definitions() end, desc = "LSP type definitions", },
+    { "gO", function() require("telescope.builtin").lsp_document_symbols() end, desc = "LSP document symbols", },
     { "<Leader>p", function() require("telescope.builtin").find_files() end, desc = "Scope [p]roject files", },
     { "<c-p>", function() require("telescope.builtin").oldfiles() end, desc = "Scope [p]roject files", },
     { "<Leader>b", function() require("telescope.builtin").buffers() end, desc = "Scope [b]uffers", },
@@ -17,6 +21,7 @@ return {
     { "<Leader>sg", function() require("telescope.builtin").git_files() end, desc = "[s]cope [g]it", },
     { "<Leader>sh", function() require("telescope.builtin").help_tags() end, desc = "[s]cope [h]elp", },
     { "<Leader>st", function() require("telescope.builtin").treesitter() end, desc = "[s]cope [t]reesitter", },
+    { "<Leader>sw", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, desc = "Scope LSP [w]orkspace symbols", },
     { "<Leader>sb", function() require("telescope.builtin").git_branches() end, desc = "[s]cope git [b]ranches", },
     { "<Leader>sx", function() require("telescope.builtin").git_stash() end, desc = "[s]cope git stash", },
     { "<Leader>sl", function() require("telescope.builtin").git_bcommits() end, desc = "[s]cope git buffer commits", },
