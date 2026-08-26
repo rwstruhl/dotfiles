@@ -1,0 +1,33 @@
+# herdr configuration — stowed to ~/.config/herdr/config.toml
+#
+# Only settings that differ from herdr's defaults live here. For the full
+# annotated list of available options, see the template herdr ships at
+# https://herdr.dev/ or reinstall to regenerate a commented config.
+# Validate edits with `herdr config check`, apply with `herdr server reload-config`.
+
+[theme]
+# Matches ghostty and nvim (see .config/ghostty/config, nvim colorscheme.lua)
+name = "rose-pine"
+
+[keys]
+# herdr replaces tmux here — .tmux.conf also used C-a, but herdr is the only
+# multiplexer now. Double-tapping ctrl+a forwards a literal ^A to the shell,
+# so `bindkey '^A' beginning-of-line` in .zshrc still works.
+prefix = "ctrl+a"
+
+# tmux-style split bindings (verified: % is side-by-side, " is stacked)
+split_vertical = "prefix+%"
+split_horizontal = 'prefix+"'
+
+# Worktrees go through `wt` (worktrunk), the standard for crs-dashboard.
+# `wt` is a shell function that cd's the calling shell, so it can't be driven
+# from a herdr key command — unbind herdr's own worktree flow to avoid two
+# competing sources of worktrees.
+new_worktree = ""
+
+# Notify when agents finish or block in background workspaces.
+[ui.toast]
+delivery = "system"
+
+[ui.sound]
+enabled = true
