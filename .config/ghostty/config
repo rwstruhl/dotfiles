@@ -1,2 +1,5 @@
 # Theme
 theme = Rose Pine
+
+# Use left Option as the terminal Meta key; keep right Option for macOS input.
+macos-option-as-alt = left
