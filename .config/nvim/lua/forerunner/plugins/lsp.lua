@@ -138,9 +138,6 @@ return {
           client.server_capabilities.documentRangeFormattingProvider = false
         end
 
-        if client:supports_method("textDocument/completion") then
-          vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false })
-        end
       end,
     })
 
