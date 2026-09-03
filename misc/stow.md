@@ -42,6 +42,19 @@ stow --restow --verbose=2 --target="$HOME" .
 Always inspect the repository copy before committing it so secrets, machine-
 specific values, caches, and generated files are not accidentally tracked.
 
+## Agent skills
+
+Global agent skills live in `.agents/skills`, so Stow makes them available at
+`~/.agents/skills` on every machine. The adjacent `.skill-lock.json` is also
+tracked because the `skills` CLI uses it for source provenance and update
+checks.
+
+The global lock file is CLI state, not the source of truth for restoring a new
+machine. The committed contents of `.agents/skills` provide portability; after
+pulling the repository, run the normal Stow command above. When `skills add`,
+`skills remove`, or `skills update` changes the global skill set, review and
+commit both the skill files and `.agents/.skill-lock.json`.
+
 ## Refresh links
 
 Use `--restow` after adding, moving, or removing files. It removes stale links
