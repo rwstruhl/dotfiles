@@ -45,6 +45,14 @@ opt.showmatch = true
 -- Faster update cycle
 opt.updatetime = 50
 
+-- Diagnostics (explicit, so upstream default changes don't drift in)
+vim.diagnostic.config({
+  severity_sort = true,
+  update_in_insert = false,
+  virtual_text = { spacing = 2, prefix = "●" },
+  float = { border = "rounded", source = "if_many" },
+})
+
 -- Netrw split fix
 local augroup = vim.api.nvim_create_augroup("netrw_fix", {clear = true})
 vim.api.nvim_create_autocmd("filetype", {

@@ -6,6 +6,7 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
+    { "gd", function() require("telescope.builtin").lsp_definitions() end, desc = "LSP definitions", },
     { "grr", function() require("telescope.builtin").lsp_references() end, desc = "LSP references", },
     { "gri", function() require("telescope.builtin").lsp_implementations() end, desc = "LSP implementations", },
     { "grt", function() require("telescope.builtin").lsp_type_definitions() end, desc = "LSP type definitions", },
