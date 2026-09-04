@@ -22,7 +22,7 @@ OPTIONS=time
 OPTIONS=msg_window:full
 # Full postmortem on death: inventory, attributes, monsters vanquished,
 # genocides, conduct. You will die; the autopsy is where the learning is.
-OPTIONS=disclose:+i,+a,+v,+g,+c
+OPTIONS=disclose:+i+a+v+g+c+o
 
 # --- Pet survival (your first deaths will be pet-related) ---
 # Highlight pets on screen and ask before striking them in melee.
