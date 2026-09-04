@@ -6,6 +6,30 @@ return {
     -- to see which enabled configurations have an executable available.
     local ts_projects = {}
 
+    -- DiffView tabs exist for reviewing changes, not editing, and servers add
+    -- nothing there. Its revision buffers carry synthetic names like
+    -- `diffview://<repo>/<rev>/<path>`, which filetype detection happily maps
+    -- back to JS/TS, so gates belong in root_dir before any client starts.
+    local function is_diffview_buf(bufnr)
+      if vim.bo[bufnr].filetype == "DiffviewFiles" then
+        return true
+      end
+      if vim.api.nvim_buf_get_name(bufnr):find("^diffview://") then
+        return true
+      end
+      -- The working-tree side of a diff is a real file buffer; check whether
+      -- it is displayed inside a DiffView tabpage.
+      local ok, lib = pcall(require, "diffview.lib")
+      if not ok then
+        return false
+      end
+      local win = vim.fn.bufwinid(bufnr)
+      if win == -1 then
+        return false
+      end
+      return lib.tabpage_to_view(vim.api.nvim_win_get_tabpage(win)) ~= nil
+    end
+
     local function supports_native_typescript(command)
       if vim.fn.executable(command) ~= 1 then
         return false
@@ -64,6 +88,9 @@ return {
 
     local function typescript_root_dir(use_native)
       return function(bufnr, on_dir)
+        if is_diffview_buf(bufnr) then
+          return
+        end
         local root = typescript_root(bufnr)
         if root and typescript_for_root(root).native == use_native then
           on_dir(root)
@@ -86,6 +113,9 @@ return {
     local oxlint_root_dir = vim.lsp.config.oxlint.root_dir
     vim.lsp.config("oxlint", {
       root_dir = function(bufnr, on_dir)
+        if is_diffview_buf(bufnr) then
+          return
+        end
         local found_root = false
         oxlint_root_dir(bufnr, function(root)
           if root then
@@ -117,7 +147,13 @@ return {
       },
     })
 
+    local eslint_root_dir = vim.lsp.config.eslint.root_dir
     vim.lsp.config("eslint", {
+      root_dir = function(bufnr, on_dir)
+        if not is_diffview_buf(bufnr) then
+          eslint_root_dir(bufnr, on_dir)
+        end
+      end,
       settings = {
         format = false,
       },
@@ -128,6 +164,14 @@ return {
       desc = "Configure LSP client behavior",
       callback = function(event)
         local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+
+        -- Safety net for servers with stock configs (ruff, rust_analyzer,
+        -- basedpyright, ...): if anything still attaches inside DiffView,
+        -- drop it right away.
+        if is_diffview_buf(event.buf) then
+          vim.lsp.buf_detach_client(event.buf, client.id)
+          return
+        end
 
         -- Basedpyright owns Python language intelligence; Ruff owns linting
         -- and fixes. JavaScript linters remain diagnostic/code-action providers.
