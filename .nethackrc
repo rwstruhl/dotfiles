@@ -1,1 +1,44 @@
-OPTIONS=altmeta
+# ~/.nethackrc — stowed from dotfiles/.nethackrc
+# Built for the curses windowport (brew's nethack builds WANT_WIN_CURSES=1).
+# Anything can be struck — options are additive, none change core gameplay.
+
+# --- The windowport this file is designed for ---
+# curses: color status bars, side panels, mouse-aware menus (vs. the default
+# tty windowport's 1987 aesthetic).
+OPTIONS=windowtype:curses
+
+# --- Information you don't have yet as a new player ---
+# Persistent inventory panel down the right side (curses shows it as a
+# window you scroll instead of an ephemeral popup).
+OPTIONS=perm_invent
+# Status line extras: XP progress, rough score, and turn counter.
+# Turn count matters more than it sounds — many timers (hunger, spell
+# duration, altar conversions) are things you learn to reason about in turns.
+OPTIONS=showexp
+OPTIONS=showscore
+OPTIONS=time
+# ^P opens a full scrollable message history instead of the short buffer.
+# Messages ARE the game's documentation of what just hit you.
+OPTIONS=msg_window:full
+# Full postmortem on death: inventory, attributes, monsters vanquished,
+# genocides, conduct. You will die; the autopsy is where the learning is.
+OPTIONS=disclose:+i,+a,+v,+g,+c
+
+# --- Pet survival (your first deaths will be pet-related) ---
+# Highlight pets on screen and ask before striking them in melee.
+OPTIONS=hilite_pet
+OPTIONS=safe_pet
+
+# --- Color and input ---
+OPTIONS=color
+# Mouse works in the curses port: click menus, click to look. Keyboard is
+# still king (hjkl+yubn move, like vim), but this helps while learning maps.
+OPTIONS=mouse_support
+
+# --- Menu colorizer: highlights item states inside any inventory/pickup menu ---
+# Blessed is the best state, cursed the worst — learn to see the difference
+# before you drink it.
+OPTIONS=menucolors
+MENUCOLOR="blessed"=green&bold
+MENUCOLOR="cursed"=red&bold
+MENUCOLOR="uncursed"=yellow
