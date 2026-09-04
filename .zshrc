@@ -48,6 +48,18 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# NetHack on herdr: herdr's direct pane pty feeds nethack a phantom quit at
+# startup (instant, silent, exit 0 — the title screen flashes by on the
+# alt-screen). A nested pty is immune, so wrap it only inside herdr.
+# Inert outside herdr; revisit if a herdr update fixes the input path.
+nethack() {
+  if [[ "$HERDR_ENV" == "1" ]]; then
+    script -q /dev/null "$(whence -p nethack)" "$@"
+  else
+    command nethack "$@"
+  fi
+}
+
 # --- ZSH plugins (syntax-highlighting must be sourced last)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
