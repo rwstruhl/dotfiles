@@ -23,7 +23,7 @@ return {
         end
       end, "Previous change")
 
-      map("n", "<Leader>hp", gs.preview_hunk_inline, "Prevew hunk")
+      map("n", "<Leader>hp", gs.preview_hunk_inline, "Preview hunk")
       map("n", "<Leader>hb", function()
         gs.blame_line({ full = true })
       end, "Blame line")

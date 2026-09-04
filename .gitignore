@@ -1,5 +1,4 @@
 .DS_Store
-.config/nvim/undo
 nvim.log
 
 .agents

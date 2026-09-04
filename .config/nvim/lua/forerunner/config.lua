@@ -18,7 +18,9 @@ opt.smartindent = true
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo"
+local undo_dir = vim.fn.stdpath("state") .. "/undo"
+vim.fn.mkdir(undo_dir, "p")
+opt.undodir = undo_dir
 
 -- Colors
 opt.termguicolors = true
