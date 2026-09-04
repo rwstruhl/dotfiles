@@ -29,5 +29,13 @@ new_worktree = ""
 [ui.toast]
 delivery = "system"
 
+# Accurate toast state comes from herdr's agent integrations — herdr-managed
+# files OUTSIDE this repo (~/.pi, ~/.claude, ~/.codex), overwritten by
+# `herdr update`. Not stowable; must be reinstalled after a fresh clone:
+#   herdr integration install pi
+#   herdr integration install claude
+#   herdr integration install codex
+# Verify all read "current": `herdr integration status`
+
 [ui.sound]
 enabled = true
